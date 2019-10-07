@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Photo View Controller-->
         <scene sceneID="914-Zg-aVL">
             <objects>
-                <viewController id="t8E-TC-53y" sceneMemberID="viewController">
+                <viewController id="t8E-TC-53y" customClass="PhotoViewController" customModule="photoJournal" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tev-fb-BcO">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -84,7 +84,7 @@
                                     <barButtonItem title="+" id="47c-wd-pAT">
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
-                                            <action selector="addPhoto:" destination="NcR-37-OTL" id="sny-5k-41C"/>
+                                            <action selector="addPhoto:" destination="t8E-TC-53y" id="4A1-AE-y9b"/>
                                             <segue destination="BCh-cN-4U5" kind="show" id="oSn-BQ-2lS"/>
                                         </connections>
                                     </barButtonItem>
@@ -96,9 +96,11 @@
                         <viewLayoutGuide key="safeArea" id="XrQ-PG-k8V"/>
                     </view>
                     <navigationItem key="navigationItem" id="Wxe-2B-Bz8"/>
+                    <connections>
+                        <outlet property="photoCollectionView" destination="Mcg-Lq-RXp" id="2VB-Qp-Ns5"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Opi-Kr-vaW" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="NcR-37-OTL" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1156.521739130435" y="-26.116071428571427"/>
         </scene>
@@ -115,6 +117,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                 <state key="normal" title="Save"/>
+                                <connections>
+                                    <action selector="saveImage:" destination="BCh-cN-4U5" eventType="touchUpInside" id="Shy-Bl-ZIk"/>
+                                </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="KuG-EF-p55">
                                 <rect key="frame" x="0.0" y="133" width="414" height="260"/>
@@ -194,6 +199,7 @@
         <image name="_upload_image-512" width="512" height="512"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="oSn-BQ-2lS"/>
         <segue reference="Jgs-FB-HCz"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -15,7 +15,7 @@ struct ImagePersistenceManager {
     private let persistenceHelper = PersistenceHelper<Image>(fileName: "image.plist")
 
 
-    func saveFilm(image: Image) throws {
+    func saveImage(image: Image) throws {
         try persistenceHelper.save(newElement: image)
 
     }

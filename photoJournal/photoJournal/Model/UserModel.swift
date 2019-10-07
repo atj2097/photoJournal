@@ -16,10 +16,7 @@ class UserDefaultsWrapper {
     
     // MARK: - Internal Methods
     //STORE
-    func storeImage(images: [Image]) {
-        UserDefaults.standard.set(images, forKey: imageKey)
-    }
-    
+ 
     func storeScrollDir(scorllDir: UICollectionView.ScrollDirection) {
         UserDefaults.standard.set(scorllDir, forKey: scrollDirKey)
     }
@@ -35,10 +32,7 @@ class UserDefaultsWrapper {
     func getScrollDir() -> UICollectionView.ScrollDirection? {
         return UserDefaults.standard.value(forKey: scrollDirKey) as? UICollectionView.ScrollDirection
     }
-    func getImages() -> [Image?] {
-        return [UserDefaults.standard.value(forKey: imageKey) as? Image]
-    }
-    
+
     
     
     
@@ -48,6 +42,5 @@ class UserDefaultsWrapper {
     
     private let scrollDirKey = "scroll"
     private let backgroundColor = "backgroundColor"
-    private let imageKey = "imageKey"
 }
 

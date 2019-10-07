@@ -9,10 +9,27 @@
 import UIKit
 private let reuseIdentifier = "photoCell"
 class PhotoViewController: UIViewController {
-
-    
-    @IBAction func addPhoto(_ sender: UIBarButtonItem) {
+    var photoCollection = [Image]() {
+        didSet {
+            getImagesFor()
+            photoCollectionView.reloadData()
+        }
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+       getImagesFor()
+    }
+    private func getImagesFor() {
+        do {
+            photoCollection = try ImagePersistenceManager.manager.getImages()
+        }
+        catch {
+            print(error)
+        }
         
+    }
+    @IBOutlet weak var photoCollectionView: UICollectionView!
+    @IBAction func addPhoto(_ sender: UIBarButtonItem) {
             let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
             let nextViewController = storyBoard.instantiateViewController(withIdentifier: "addPhoto") as! EditingViewController
              self.present(nextViewController, animated:true, completion:nil)
@@ -21,7 +38,9 @@ class PhotoViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        getImagesFor()
+        photoCollectionView.dataSource = self
+        photoCollectionView.delegate = self
     }
     
 
@@ -29,11 +48,14 @@ class PhotoViewController: UIViewController {
 }
 extension PhotoViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 0
+        return photoCollection.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! PhotoCollectionViewCell
+        let photo = photoCollection[indexPath.row]
+        cell.photoName.text = photo.name
+        cell.photoDate.text = photo.postedDate
         
         // Configure the cell
         

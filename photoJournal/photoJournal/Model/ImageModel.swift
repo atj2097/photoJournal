@@ -11,5 +11,5 @@ import UIKit
 struct Image: Codable {
     let postedDate: String
     let name: String
-    let image: String
+    let imageData: Data
 }

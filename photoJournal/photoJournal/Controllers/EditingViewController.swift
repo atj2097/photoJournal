@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import AssetsLibrary
+import Photos
+var photoName = String()
 
 class EditingViewController: UIViewController {
 
@@ -17,7 +20,26 @@ class EditingViewController: UIViewController {
         imagePickerVC.delegate = self as? UIImagePickerControllerDelegate & UINavigationControllerDelegate
         present(imagePickerVC, animated: true)
     }
-    @IBOutlet weak var textView: UITextView!
+    
+    @IBAction func saveImage(_ sender: Any) {
+        let formatter = DateFormatter()
+        //2016-12-08 03:37:22 +0000
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss Z"
+        let now = Date()
+        let dateString = formatter.string(from:now)
+        NSLog("%@", dateString)
+        guard let imageData = self.imageUpload.image?.jpegData(compressionQuality: 0.5) else {return}
+        let profileImageInfo = Image(postedDate: dateString, name: textView.text , imageData: imageData)
+ try? ImagePersistenceManager.manager.saveImage(image: profileImageInfo)
+        self.navigationController?.popViewController(animated: true)
+//        let newImage = Image(postedDate: dateString, name: textView.text, imageData: photoName)
+//        DispatchQueue.global(qos: .utility).async {
+//    try? ImagePersistenceManager.manager.saveImage(image: newImage)
+//            DispatchQueue.main.async {
+//    self.navigationController?.popViewController(animated: true)
+            }
+    
+        @IBOutlet weak var textView: UITextView!
     override func viewDidLoad() {
         super.viewDidLoad()
         textView.text = "Placeholder"
@@ -30,15 +52,6 @@ class EditingViewController: UIViewController {
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 extension EditingViewController: UITextViewDelegate  {
@@ -110,8 +123,14 @@ extension EditingViewController: UIImagePickerControllerDelegate, UINavigationCo
         guard let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else {
             return
         }
+        if let asset = info[UIImagePickerController.InfoKey.phAsset] as? PHAsset{
+            if let fileName = asset.value(forKey: "filename") as? String{
+                photoName = fileName
+            }
+        }
         imageUpload.image = image
-        //        imageProfile.makeCircular()
         dismiss(animated: true, completion: nil)
+      
     }
 }
+
