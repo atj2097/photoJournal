@@ -5,11 +5,11 @@
 //  Created by God on 10/4/19.
 //  Copyright © 2019 God. All rights reserved.
 //
-
+import Foundation
 import UIKit
 
-struct Image {
-    var postedDate: Date
-    var name: String
-    var image: UIImage
+struct Image: Codable {
+    let postedDate: String
+    let name: String
+    let image: String
 }

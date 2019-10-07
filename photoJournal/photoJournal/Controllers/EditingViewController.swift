@@ -10,6 +10,13 @@ import UIKit
 
 class EditingViewController: UIViewController {
 
+    @IBOutlet weak var imageUpload: UIImageView!
+    @IBOutlet weak var showLibrary: UIBarButtonItem!
+    @IBAction func showPhotos(_ sender: Any) {
+        let imagePickerVC = UIImagePickerController()
+        imagePickerVC.delegate = self as? UIImagePickerControllerDelegate & UINavigationControllerDelegate
+        present(imagePickerVC, animated: true)
+    }
     @IBOutlet weak var textView: UITextView!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,6 +26,7 @@ class EditingViewController: UIViewController {
         textView.becomeFirstResponder()
         textView.selectedTextRange = textView.textRange(from: textView.beginningOfDocument, to: textView.beginningOfDocument)
         textView.delegate = self
+        navigationController?.navigationBar.isHidden = true
     }
     
 
@@ -95,5 +103,15 @@ extension EditingViewController: UITextViewDelegate  {
     private func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
         textField.placeholder = ""
         return true
+    }
+}
+extension EditingViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        guard let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else {
+            return
+        }
+        imageUpload.image = image
+        //        imageProfile.makeCircular()
+        dismiss(animated: true, completion: nil)
     }
 }

@@ -10,6 +10,15 @@ import UIKit
 private let reuseIdentifier = "photoCell"
 class PhotoViewController: UIViewController {
 
+    
+    @IBAction func addPhoto(_ sender: UIBarButtonItem) {
+        
+            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+            let nextViewController = storyBoard.instantiateViewController(withIdentifier: "addPhoto") as! EditingViewController
+             self.present(nextViewController, animated:true, completion:nil)
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
