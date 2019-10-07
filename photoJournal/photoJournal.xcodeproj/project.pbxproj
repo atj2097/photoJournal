@@ -20,6 +20,7 @@
 		CB747B882347EA2B00F652AD /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB747B872347EA2B00F652AD /* PersistenceManager.swift */; };
 		CB747B8A2347EB3000F652AD /* ImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB747B892347EB3000F652AD /* ImageModel.swift */; };
 		CB747B8C2347ECEF00F652AD /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB747B8B2347ECEF00F652AD /* UserModel.swift */; };
+		CBF2E480234B621E003661DC /* MorePersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBF2E47F234B621E003661DC /* MorePersistence.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		CB747B872347EA2B00F652AD /* PersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceManager.swift; sourceTree = "<group>"; };
 		CB747B892347EB3000F652AD /* ImageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageModel.swift; sourceTree = "<group>"; };
 		CB747B8B2347ECEF00F652AD /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		CBF2E47F234B621E003661DC /* MorePersistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MorePersistence.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,6 +148,7 @@
 			children = (
 				CB747B892347EB3000F652AD /* ImageModel.swift */,
 				CB747B8B2347ECEF00F652AD /* UserModel.swift */,
+				CBF2E47F234B621E003661DC /* MorePersistence.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -315,6 +318,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CB747B482347CD0300F652AD /* AppDelegate.swift in Sources */,
+				CBF2E480234B621E003661DC /* MorePersistence.swift in Sources */,
 				CB747B8A2347EB3000F652AD /* ImageModel.swift in Sources */,
 				CB747B8C2347ECEF00F652AD /* UserModel.swift in Sources */,
 				CB747B842347E7BF00F652AD /* PhotoViewController.swift in Sources */,
