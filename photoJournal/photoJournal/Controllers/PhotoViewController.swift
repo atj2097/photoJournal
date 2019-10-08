@@ -11,7 +11,7 @@ private let reuseIdentifier = "photoCell"
 class PhotoViewController: UIViewController {
     var photoCollection = [Image]() {
         didSet {
-            getImagesFor()
+            //getImagesFor()
             photoCollectionView.reloadData()
         }
     }
@@ -21,7 +21,7 @@ class PhotoViewController: UIViewController {
     }
     private func getImagesFor() {
         do {
-            photoCollection = try ImagePersistenceManager.manager.getImages()
+        photoCollection = try ImagePersistenceManager.manager.getImages()
         }
         catch {
             print(error)
@@ -56,6 +56,9 @@ extension PhotoViewController: UICollectionViewDelegate, UICollectionViewDataSou
         let photo = photoCollection[indexPath.row]
         cell.photoName.text = photo.name
         cell.photoDate.text = photo.postedDate
+        cell.photoView.image = UIImage(data: photo.imageData)
+        cell.buttonCell.tag = indexPath.row
+        cell.delegate = self
         
         // Configure the cell
         
@@ -89,4 +92,30 @@ extension PhotoViewController: UICollectionViewDelegate, UICollectionViewDataSou
      
      }
      */
+}
+extension PhotoViewController: PhotoCellDelegate {
+    func actionSheet(tag: Int) {
+        let optionMenu = UIAlertController(title: nil, message: "Choose Option", preferredStyle: .actionSheet)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        optionMenu.addAction(cancelAction)
+        let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { (action) in
+//            let image = self.photoCollection[tag]
+         
+            self.photoCollection.remove(at: tag)
+            
+        }
+        optionMenu.addAction(deleteAction)
+        let editAction = UIAlertAction(title: "Edit", style: .destructive) { (action) in
+            let image = self.photoCollection[tag]
+                let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+                let nextViewController = storyBoard.instantiateViewController(withIdentifier: "addPhoto") as! EditingViewController
+                nextViewController.imageNew = image
+                self.present(nextViewController, animated:true, completion:nil)
+        }
+        optionMenu.addAction(editAction)
+        
+        self.present(optionMenu, animated: true, completion: nil)
+        
+        
+    }
 }

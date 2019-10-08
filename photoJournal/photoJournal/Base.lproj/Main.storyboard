@@ -47,6 +47,9 @@
                                                     <state key="normal" title="...">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="optionsClicked:" destination="UHi-rw-dPf" eventType="touchUpInside" id="U4v-xd-xgE"/>
+                                                    </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="photoName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UXH-2J-KcE">
                                                     <rect key="frame" x="7" y="219" width="236" height="29"/>
@@ -199,7 +202,6 @@
         <image name="_upload_image-512" width="512" height="512"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="oSn-BQ-2lS"/>
         <segue reference="Jgs-FB-HCz"/>
     </inferredMetricsTieBreakers>
 </document>

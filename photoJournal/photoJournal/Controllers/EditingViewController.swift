@@ -12,6 +12,7 @@ import Photos
 var photoName = String()
 
 class EditingViewController: UIViewController {
+    var imageNew: Image!
 
     @IBOutlet weak var imageUpload: UIImageView!
     @IBOutlet weak var showLibrary: UIBarButtonItem!
@@ -29,9 +30,9 @@ class EditingViewController: UIViewController {
         let dateString = formatter.string(from:now)
         NSLog("%@", dateString)
         guard let imageData = self.imageUpload.image?.jpegData(compressionQuality: 0.5) else {return}
-        let profileImageInfo = Image(postedDate: dateString, name: textView.text , imageData: imageData)
- try? ImagePersistenceManager.manager.saveImage(image: profileImageInfo)
-        self.navigationController?.popViewController(animated: true)
+        let imageInfo = Image(postedDate: dateString, name: textView.text , imageData: imageData)
+ try? ImagePersistenceManager.manager.saveImage(image: imageInfo)
+self.navigationController?.popViewController(animated: true)
 //        let newImage = Image(postedDate: dateString, name: textView.text, imageData: photoName)
 //        DispatchQueue.global(qos: .utility).async {
 //    try? ImagePersistenceManager.manager.saveImage(image: newImage)
@@ -49,6 +50,9 @@ class EditingViewController: UIViewController {
         textView.selectedTextRange = textView.textRange(from: textView.beginningOfDocument, to: textView.beginningOfDocument)
         textView.delegate = self
         navigationController?.navigationBar.isHidden = true
+        if self.imageUpload.image != UIImage(named: "_upload_image-512") {
+            imageUpload.image = UIImage(data: imageNew.imageData)
+        }
     }
     
 

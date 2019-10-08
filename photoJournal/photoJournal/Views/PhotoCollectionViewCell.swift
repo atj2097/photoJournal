@@ -7,6 +7,9 @@
 //
 
 import UIKit
+protocol PhotoCellDelegate: AnyObject {
+    func actionSheet(tag: Int)
+}
 
 class PhotoCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var photoView: UIImageView!
@@ -15,4 +18,10 @@ class PhotoCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var photoDate: UILabel!
     
     @IBOutlet weak var buttonCell: UIButton!
+    weak var delegate: PhotoCellDelegate?
+    @IBAction func optionsClicked(_ sender: UIButton) {
+        delegate?.actionSheet(tag: sender.tag)
+    }
+    
+    
 }
