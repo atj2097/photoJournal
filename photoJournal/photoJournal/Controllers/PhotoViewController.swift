@@ -17,11 +17,11 @@ class PhotoViewController: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-       getImagesFor()
+        getImagesFor()
     }
     private func getImagesFor() {
         do {
-        photoCollection = try ImagePersistenceManager.manager.getImages()
+            photoCollection = try ImagePersistenceManager.manager.getImages()
         }
         catch {
             print(error)
@@ -30,9 +30,9 @@ class PhotoViewController: UIViewController {
     }
     @IBOutlet weak var photoCollectionView: UICollectionView!
     @IBAction func addPhoto(_ sender: UIBarButtonItem) {
-            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-            let nextViewController = storyBoard.instantiateViewController(withIdentifier: "addPhoto") as! EditingViewController
-             self.present(nextViewController, animated:true, completion:nil)
+        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+        let nextViewController = storyBoard.instantiateViewController(withIdentifier: "addPhoto") as! EditingViewController
+        self.present(nextViewController, animated:true, completion:nil)
     }
     
     
@@ -43,8 +43,8 @@ class PhotoViewController: UIViewController {
         photoCollectionView.delegate = self
     }
     
-
-
+    
+    
 }
 extension PhotoViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -65,33 +65,6 @@ extension PhotoViewController: UICollectionViewDelegate, UICollectionViewDataSou
         return cell
     }
     
-    
-//    override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-//        return true
-//    }
-//    */
-    
-    /*
-     // Uncomment this method to specify if the specified item should be selected
-     override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-     return true
-     }
-     */
-    
-    /*
-     // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-     override func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
-     return false
-     }
-     
-     override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-     return false
-     }
-     
-     override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
-     
-     }
-     */
 }
 extension PhotoViewController: PhotoCellDelegate {
     func actionSheet(tag: Int) {
@@ -99,18 +72,18 @@ extension PhotoViewController: PhotoCellDelegate {
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
         optionMenu.addAction(cancelAction)
         let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { (action) in
-//            let image = self.photoCollection[tag]
-         
+            //            let image = self.photoCollection[tag]
+            
             self.photoCollection.remove(at: tag)
             
         }
         optionMenu.addAction(deleteAction)
         let editAction = UIAlertAction(title: "Edit", style: .destructive) { (action) in
             let image = self.photoCollection[tag]
-                let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-                let nextViewController = storyBoard.instantiateViewController(withIdentifier: "addPhoto") as! EditingViewController
-                nextViewController.imageNew = image
-                self.present(nextViewController, animated:true, completion:nil)
+            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+            let nextViewController = storyBoard.instantiateViewController(withIdentifier: "addPhoto") as! EditingViewController
+            nextViewController.imageNew = image
+            self.present(nextViewController, animated:true, completion:nil)
         }
         optionMenu.addAction(editAction)
         

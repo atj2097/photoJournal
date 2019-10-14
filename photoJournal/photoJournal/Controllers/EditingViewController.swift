@@ -13,7 +13,7 @@ var photoName = String()
 
 class EditingViewController: UIViewController {
     var imageNew: Image!
-
+    
     @IBOutlet weak var imageUpload: UIImageView!
     @IBOutlet weak var showLibrary: UIBarButtonItem!
     @IBAction func showPhotos(_ sender: Any) {
@@ -31,16 +31,16 @@ class EditingViewController: UIViewController {
         NSLog("%@", dateString)
         guard let imageData = self.imageUpload.image?.jpegData(compressionQuality: 0.5) else {return}
         let imageInfo = Image(postedDate: dateString, name: textView.text , imageData: imageData)
- try? ImagePersistenceManager.manager.saveImage(image: imageInfo)
-self.navigationController?.popViewController(animated: true)
-//        let newImage = Image(postedDate: dateString, name: textView.text, imageData: photoName)
-//        DispatchQueue.global(qos: .utility).async {
-//    try? ImagePersistenceManager.manager.saveImage(image: newImage)
-//            DispatchQueue.main.async {
-//    self.navigationController?.popViewController(animated: true)
-            }
+        try? ImagePersistenceManager.manager.saveImage(image: imageInfo)
+        self.navigationController?.popViewController(animated: true)
+        //        let newImage = Image(postedDate: dateString, name: textView.text, imageData: photoName)
+        //        DispatchQueue.global(qos: .utility).async {
+        //    try? ImagePersistenceManager.manager.saveImage(image: newImage)
+        //            DispatchQueue.main.async {
+        //    self.navigationController?.popViewController(animated: true)
+    }
     
-        @IBOutlet weak var textView: UITextView!
+    @IBOutlet weak var textView: UITextView!
     override func viewDidLoad() {
         super.viewDidLoad()
         textView.text = "Placeholder"
@@ -55,8 +55,8 @@ self.navigationController?.popViewController(animated: true)
         }
     }
     
-
-
+    
+    
 }
 extension EditingViewController: UITextViewDelegate  {
     
@@ -134,7 +134,7 @@ extension EditingViewController: UIImagePickerControllerDelegate, UINavigationCo
         }
         imageUpload.image = image
         dismiss(animated: true, completion: nil)
-      
+        
     }
 }
 
