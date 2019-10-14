@@ -15,10 +15,40 @@ class PhotoViewController: UIViewController {
             photoCollectionView.reloadData()
         }
     }
+
+    let layOut: UICollectionViewFlowLayout = UICollectionViewFlowLayout.init()
+    
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        loadDefaultSettings()
         getImagesFor()
     }
+    private func loadDefaultSettings() {
+        //black color
+        if UserDefaultsWrapper.manager.getBackground() == true {
+            self.view.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+            photoCollectionView.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        }
+        else {
+            self.view.backgroundColor = #colorLiteral(red: 0.5515964627, green: 0.7481098175, blue: 0.9596171975, alpha: 1)
+            photoCollectionView.backgroundColor = #colorLiteral(red: 0.5515964627, green: 0.7481098175, blue: 0.9596171975, alpha: 1)
+        }
+        
+        //scrollDirection
+        layOut.itemSize = CGSize(width: 250, height: 250)
+        if UserDefaultsWrapper.manager.getScrollDir() == true {
+            layOut.scrollDirection = .horizontal
+            photoCollectionView.setCollectionViewLayout(layOut, animated: true)
+        }
+            
+        else {
+            layOut.scrollDirection = .vertical
+            photoCollectionView.setCollectionViewLayout(layOut, animated: true)
+        }
+        
+    }
+    
     private func getImagesFor() {
         do {
             photoCollection = try ImagePersistenceManager.manager.getImages()
@@ -42,6 +72,7 @@ class PhotoViewController: UIViewController {
         photoCollectionView.dataSource = self
         photoCollectionView.delegate = self
     }
+  
     
     
     

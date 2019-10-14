@@ -10,6 +10,68 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Settings Controller View Controller-->
+        <scene sceneID="ESd-Ep-MhD">
+            <objects>
+                <viewController id="7pC-78-vOa" customClass="Settings_ControllerViewController" customModule="photoJournal" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="waM-UK-wja">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap For Dark Mode" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iHz-JZ-Sm0">
+                                <rect key="frame" x="60" y="144" width="294" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="highlightedColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </label>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JcP-e5-KGO">
+                                <rect key="frame" x="184" y="365" width="51" height="31"/>
+                                <connections>
+                                    <action selector="scrollDirectionSwitch:" destination="7pC-78-vOa" eventType="valueChanged" id="u7P-x4-Ulj"/>
+                                </connections>
+                            </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Change Scroll Direction" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4NO-Vq-wWs">
+                                <rect key="frame" x="60" y="293" width="295" height="39"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="39" id="fWy-oi-ixz"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="highlightedColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </label>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="4DB-mh-oVp">
+                                <rect key="frame" x="184" y="203" width="51" height="31"/>
+                                <connections>
+                                    <action selector="backGroundColorSwitch:" destination="7pC-78-vOa" eventType="valueChanged" id="qIn-sa-WTF"/>
+                                </connections>
+                            </switch>
+                        </subviews>
+                        <color key="backgroundColor" red="0.59280409119999999" green="0.74258736800000003" blue="0.94122225049999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstItem="4NO-Vq-wWs" firstAttribute="leading" secondItem="R1f-zi-hGG" secondAttribute="leading" constant="60" id="8GT-iv-OTM"/>
+                            <constraint firstItem="4NO-Vq-wWs" firstAttribute="top" secondItem="4DB-mh-oVp" secondAttribute="bottom" constant="59" id="CWQ-VP-mjK"/>
+                            <constraint firstItem="JcP-e5-KGO" firstAttribute="leading" secondItem="R1f-zi-hGG" secondAttribute="leading" constant="184" id="NwC-Y4-5Hn"/>
+                            <constraint firstItem="R1f-zi-hGG" firstAttribute="trailing" secondItem="iHz-JZ-Sm0" secondAttribute="trailing" constant="60" id="Qb5-Lp-J8P"/>
+                            <constraint firstItem="iHz-JZ-Sm0" firstAttribute="leading" secondItem="R1f-zi-hGG" secondAttribute="leading" constant="60" id="Xlg-KI-4HM"/>
+                            <constraint firstItem="iHz-JZ-Sm0" firstAttribute="top" secondItem="R1f-zi-hGG" secondAttribute="top" constant="100" id="hR4-IW-PQN"/>
+                            <constraint firstItem="JcP-e5-KGO" firstAttribute="top" secondItem="4NO-Vq-wWs" secondAttribute="bottom" constant="33" id="hRw-01-Ofa"/>
+                            <constraint firstItem="R1f-zi-hGG" firstAttribute="trailing" secondItem="4NO-Vq-wWs" secondAttribute="trailing" constant="59" id="jqC-D5-IUa"/>
+                            <constraint firstItem="R1f-zi-hGG" firstAttribute="bottom" secondItem="JcP-e5-KGO" secondAttribute="bottom" constant="466" id="nf8-QT-Gce"/>
+                            <constraint firstItem="JcP-e5-KGO" firstAttribute="leading" secondItem="4DB-mh-oVp" secondAttribute="leading" id="ylX-Ac-L9R"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="R1f-zi-hGG"/>
+                    </view>
+                    <connections>
+                        <outlet property="colorSwitch" destination="4DB-mh-oVp" id="LIs-iQ-1OH"/>
+                        <outlet property="darkModeText" destination="iHz-JZ-Sm0" id="Wh7-yH-Ucb"/>
+                        <outlet property="scrollSwitch" destination="JcP-e5-KGO" id="8Wk-cR-4bM"/>
+                        <outlet property="scrollText" destination="4NO-Vq-wWs" id="Bp5-XB-g3l"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VE7-7a-oOa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1156.521739130435" y="-783.48214285714278"/>
+        </scene>
         <!--Photo View Controller-->
         <scene sceneID="914-Zg-aVL">
             <objects>
@@ -20,7 +82,6 @@
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Mcg-Lq-RXp">
                                 <rect key="frame" x="0.0" y="44" width="414" height="792"/>
-                                <color key="backgroundColor" red="0.59280409119999999" green="0.74258736800000003" blue="0.94122225049999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="D5F-Bo-dWh">
                                     <size key="itemSize" width="301" height="311"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -97,7 +158,7 @@
                                 </cells>
                             </collectionView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ehj-yb-dtT">
-                                <rect key="frame" x="0.0" y="792" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="786" width="414" height="50"/>
                                 <color key="backgroundColor" red="0.78540557619999996" green="0.50295322200000003" blue="0.49574300840000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <gestureRecognizers/>
                                 <items>
@@ -110,6 +171,12 @@
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="Mi7-AX-WLN"/>
+                                    <barButtonItem title="Item" image="icons8-gear-50" id="Ef3-vy-8TK">
+                                        <connections>
+                                            <segue destination="7pC-78-vOa" kind="show" id="nez-53-Ofo"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="hoD-mh-1cg"/>
                                 </items>
                             </toolbar>
                         </subviews>
@@ -245,6 +312,7 @@
     <resources>
         <image name="Navigation_Camera_2x" width="50" height="38"/>
         <image name="_upload_image-512" width="512" height="512"/>
+        <image name="icons8-gear-50" width="50" height="50"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Jgs-FB-HCz"/>

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CB409A22235500110086181A /* Settings ControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB409A21235500110086181A /* Settings ControllerViewController.swift */; };
 		CB747B482347CD0300F652AD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB747B472347CD0300F652AD /* AppDelegate.swift */; };
 		CB747B4D2347CD0300F652AD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB747B4B2347CD0300F652AD /* Main.storyboard */; };
 		CB747B4F2347CD0400F652AD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CB747B4E2347CD0400F652AD /* Assets.xcassets */; };
@@ -41,6 +42,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CB409A21235500110086181A /* Settings ControllerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Settings ControllerViewController.swift"; sourceTree = "<group>"; };
 		CB747B442347CD0300F652AD /* photoJournal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = photoJournal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB747B472347CD0300F652AD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CB747B4C2347CD0300F652AD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -182,6 +184,7 @@
 				CB747B812347DA8400F652AD /* EditingViewController.swift */,
 				CB747B832347E7BF00F652AD /* PhotoViewController.swift */,
 				CB747B852347E80C00F652AD /* CollectionViewController.swift */,
+				CB409A21235500110086181A /* Settings ControllerViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -319,6 +322,7 @@
 			files = (
 				CB747B482347CD0300F652AD /* AppDelegate.swift in Sources */,
 				CBF2E480234B621E003661DC /* MorePersistence.swift in Sources */,
+				CB409A22235500110086181A /* Settings ControllerViewController.swift in Sources */,
 				CB747B8A2347EB3000F652AD /* ImageModel.swift in Sources */,
 				CB747B8C2347ECEF00F652AD /* UserModel.swift in Sources */,
 				CB747B842347E7BF00F652AD /* PhotoViewController.swift in Sources */,

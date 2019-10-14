@@ -17,20 +17,20 @@ class UserDefaultsWrapper {
     // MARK: - Internal Methods
     //STORE
  
-    func storeScrollDir(scorllDir: UICollectionView.ScrollDirection) {
+    func storeScrollDir(scorllDir: Bool) {
         UserDefaults.standard.set(scorllDir, forKey: scrollDirKey)
     }
-    func storeBackCol(backColor: UIColor) {
+    func storeBackCol(backColor: Bool) {
         UserDefaults.standard.set(backColor, forKey: backgroundColor)
     }
     
     
     //GET
-    func getBackground() -> UIColor {
-        return UserDefaults.standard.value(forKey: backgroundColor) as? UIColor ?? UIColor.red
+    func getBackground() -> Bool? {
+        return UserDefaults.standard.value(forKey: backgroundColor) as? Bool ?? true
     }
-    func getScrollDir() -> UICollectionView.ScrollDirection? {
-        return UserDefaults.standard.value(forKey: scrollDirKey) as? UICollectionView.ScrollDirection
+    func getScrollDir() -> Bool? {
+        return (UserDefaults.standard.value(forKey: scrollDirKey) as? Bool)!
     }
 
     
