@@ -8,6 +8,7 @@
 
 import UIKit
 private let reuseIdentifier = "photoCell"
+//MARK: Variables
 class PhotoViewController: UIViewController {
     var photoCollection = [Image]() {
         didSet {
@@ -15,15 +16,32 @@ class PhotoViewController: UIViewController {
             photoCollectionView.reloadData()
         }
     }
-
     let layOut: UICollectionViewFlowLayout = UICollectionViewFlowLayout.init()
+    @IBOutlet weak var photoCollectionView: UICollectionView!
     
     
+    @IBAction func addPhoto(_ sender: UIBarButtonItem) {
+        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+        let nextViewController = storyBoard.instantiateViewController(withIdentifier: "addPhoto") as! EditingViewController
+        self.present(nextViewController, animated:true, completion:nil)
+    }
+    
+    
+    
+    //MARK: Lifecycle Functions
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         loadDefaultSettings()
         getImagesFor()
     }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        getImagesFor()
+        photoCollectionView.dataSource = self
+        photoCollectionView.delegate = self
+    }
+    
+    //Loading User Defaults
     private func loadDefaultSettings() {
         //black color
         if UserDefaultsWrapper.manager.getBackground() == true {
@@ -58,25 +76,14 @@ class PhotoViewController: UIViewController {
         }
         
     }
-    @IBOutlet weak var photoCollectionView: UICollectionView!
-    @IBAction func addPhoto(_ sender: UIBarButtonItem) {
-        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-        let nextViewController = storyBoard.instantiateViewController(withIdentifier: "addPhoto") as! EditingViewController
-        self.present(nextViewController, animated:true, completion:nil)
-    }
     
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        getImagesFor()
-        photoCollectionView.dataSource = self
-        photoCollectionView.delegate = self
-    }
+   
   
     
     
     
 }
+
 extension PhotoViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return photoCollection.count

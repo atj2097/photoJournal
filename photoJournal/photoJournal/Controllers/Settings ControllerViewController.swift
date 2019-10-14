@@ -9,14 +9,13 @@
 import UIKit
 
 class Settings_ControllerViewController: UIViewController {
-    
-    
+    //MARK: VC Outlets
     @IBOutlet weak var darkModeText: UILabel!
-    
     @IBOutlet weak var colorSwitch: UISwitch!
     @IBOutlet weak var scrollText: UILabel!
     @IBOutlet weak var scrollSwitch: UISwitch!
     
+    //MARK: Switch Functions
     @IBAction func backGroundColorSwitch(_ sender: UISwitch) {
         switch sender.isOn {
         case true:
@@ -41,6 +40,7 @@ class Settings_ControllerViewController: UIViewController {
         }
     }
     
+    //MARK: Private Func
     private func loadDefaultSettings() {
         if UserDefaultsWrapper.manager.getBackground() == true {
             self.view.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
@@ -57,7 +57,7 @@ class Settings_ControllerViewController: UIViewController {
         default:
             print(" ")
         }
-        
+    
         //UISwitchScrollDirection
         switch UserDefaultsWrapper.manager.getScrollDir() {
         case true:
@@ -67,9 +67,9 @@ class Settings_ControllerViewController: UIViewController {
         default:
             print(" ")
         }
-        
-
     }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         loadDefaultSettings()

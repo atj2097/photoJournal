@@ -16,6 +16,8 @@ class EditingViewController: UIViewController {
     
     @IBOutlet weak var imageUpload: UIImageView!
     @IBOutlet weak var showLibrary: UIBarButtonItem!
+    
+    //Actions
     @IBAction func showPhotos(_ sender: Any) {
         let imagePickerVC = UIImagePickerController()
         imagePickerVC.delegate = self as? UIImagePickerControllerDelegate & UINavigationControllerDelegate
@@ -33,16 +35,16 @@ class EditingViewController: UIViewController {
         let imageInfo = Image(postedDate: dateString, name: textView.text , imageData: imageData)
         try? ImagePersistenceManager.manager.saveImage(image: imageInfo)
         self.navigationController?.popViewController(animated: true)
-        //        let newImage = Image(postedDate: dateString, name: textView.text, imageData: photoName)
-        //        DispatchQueue.global(qos: .utility).async {
-        //    try? ImagePersistenceManager.manager.saveImage(image: newImage)
-        //            DispatchQueue.main.async {
-        //    self.navigationController?.popViewController(animated: true)
     }
     
     @IBOutlet weak var textView: UITextView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        textView.text = "Placeholder"
+        setUpViews()
+    }
+    
+    func setUpViews() {
         textView.text = "Placeholder"
         textView.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         // Do any additional setup after loading the view.
@@ -122,6 +124,7 @@ extension EditingViewController: UITextViewDelegate  {
         return true
     }
 }
+
 extension EditingViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         guard let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else {
