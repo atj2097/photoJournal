@@ -30,7 +30,7 @@ class UserDefaultsWrapper {
         return UserDefaults.standard.value(forKey: backgroundColor) as? Bool ?? true
     }
     func getScrollDir() -> Bool? {
-        return (UserDefaults.standard.value(forKey: scrollDirKey) as? Bool)!
+        return (UserDefaults.standard.value(forKey: scrollDirKey) as? Bool) ?? true
     }
 
     

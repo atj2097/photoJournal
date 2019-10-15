@@ -12,7 +12,6 @@ private let reuseIdentifier = "photoCell"
 class PhotoViewController: UIViewController {
     var photoCollection = [Image]() {
         didSet {
-            //getImagesFor()
             photoCollectionView.reloadData()
         }
     }
@@ -31,12 +30,12 @@ class PhotoViewController: UIViewController {
     //MARK: Lifecycle Functions
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        loadDefaultSettings()
         getImagesFor()
+        loadDefaultSettings()
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        getImagesFor()
+        
         photoCollectionView.dataSource = self
         photoCollectionView.delegate = self
     }
@@ -44,28 +43,41 @@ class PhotoViewController: UIViewController {
     //Loading User Defaults
     private func loadDefaultSettings() {
         //black color
-        if UserDefaultsWrapper.manager.getBackground() == true {
-            self.view.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-            photoCollectionView.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-        }
-        else {
-            self.view.backgroundColor = #colorLiteral(red: 0.5515964627, green: 0.7481098175, blue: 0.9596171975, alpha: 1)
-            photoCollectionView.backgroundColor = #colorLiteral(red: 0.5515964627, green: 0.7481098175, blue: 0.9596171975, alpha: 1)
-        }
-        
-        //scrollDirection
-        layOut.itemSize = CGSize(width: 250, height: 250)
-        if UserDefaultsWrapper.manager.getScrollDir() == true {
-            layOut.scrollDirection = .horizontal
-            photoCollectionView.setCollectionViewLayout(layOut, animated: true)
+        if UserDefaultsWrapper.manager.getBackground() != nil {
+            
+            if UserDefaultsWrapper.manager.getBackground() == true {
+                self.view.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+                photoCollectionView.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+            }
+            else {
+                self.view.backgroundColor = #colorLiteral(red: 0.5515964627, green: 0.7481098175, blue: 0.9596171975, alpha: 1)
+                photoCollectionView.backgroundColor = #colorLiteral(red: 0.5515964627, green: 0.7481098175, blue: 0.9596171975, alpha: 1)
+            }
         }
             
+        else {
+            self.view.backgroundColor = #colorLiteral(red: 0.5515964627, green: 0.7481098175, blue: 0.9596171975, alpha: 1)
+        }
+        //scrollDirection
+        layOut.itemSize = CGSize(width: 250, height: 250)
+        if UserDefaultsWrapper.manager.getScrollDir() != nil {
+            if UserDefaultsWrapper.manager.getScrollDir() == true {
+                layOut.scrollDirection = .horizontal
+                photoCollectionView.setCollectionViewLayout(layOut, animated: true)
+            }
+                
+            else {
+                layOut.scrollDirection = .vertical
+                photoCollectionView.setCollectionViewLayout(layOut, animated: true)
+            }
+        }
         else {
             layOut.scrollDirection = .vertical
             photoCollectionView.setCollectionViewLayout(layOut, animated: true)
         }
         
     }
+    
     
     private func getImagesFor() {
         do {
@@ -77,8 +89,8 @@ class PhotoViewController: UIViewController {
         
     }
     
-   
-  
+    
+    
     
     
     
@@ -86,7 +98,7 @@ class PhotoViewController: UIViewController {
 
 extension PhotoViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return photoCollection.count
+        return photoCollection.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -94,12 +106,21 @@ extension PhotoViewController: UICollectionViewDelegate, UICollectionViewDataSou
         let photo = photoCollection[indexPath.row]
         cell.photoName.text = photo.name
         cell.photoDate.text = photo.postedDate
-        cell.photoView.image = UIImage(data: photo.imageData)
+        cell.photoView.image = UIImage(data: photo.imageData ?? Data())
         cell.buttonCell.tag = indexPath.row
         cell.delegate = self
         
-        // Configure the cell
-        
+        //Cell Design
+        cell.contentView.layer.cornerRadius = 2.0
+        cell.contentView.layer.borderWidth = 1.0
+        cell.contentView.layer.borderColor = UIColor.clear.cgColor
+        cell.contentView.layer.masksToBounds = true
+        cell.layer.shadowColor = UIColor.lightGray.cgColor
+        cell.layer.shadowOffset = CGSize(width: 0, height: 2.0)
+        cell.layer.shadowRadius = 2.0
+        cell.layer.shadowOpacity = 1.0
+        cell.layer.masksToBounds = false
+        cell.layer.shadowPath = UIBezierPath(roundedRect: cell.bounds, cornerRadius: cell.contentView.layer.cornerRadius).cgPath
         return cell
     }
     
@@ -111,12 +132,11 @@ extension PhotoViewController: PhotoCellDelegate {
         optionMenu.addAction(cancelAction)
         let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { (action) in
             //            let image = self.photoCollection[tag]
-            
             self.photoCollection.remove(at: tag)
             
         }
         optionMenu.addAction(deleteAction)
-        let editAction = UIAlertAction(title: "Edit", style: .destructive) { (action) in
+        let editAction = UIAlertAction(title: "Edit", style: .default) { (action) in
             let image = self.photoCollection[tag]
             let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
             let nextViewController = storyBoard.instantiateViewController(withIdentifier: "addPhoto") as! EditingViewController

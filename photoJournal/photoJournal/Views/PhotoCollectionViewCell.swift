@@ -22,6 +22,7 @@ class PhotoCollectionViewCell: UICollectionViewCell {
     @IBAction func optionsClicked(_ sender: UIButton) {
         delegate?.actionSheet(tag: sender.tag)
     }
-    
+
     
 }
+

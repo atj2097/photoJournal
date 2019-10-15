@@ -44,6 +44,20 @@ class photoJournalTests: XCTestCase {
             print("Not Saving Image")
         }
     }
+    
+    func testGettingImages() {
+        var photoCollection = [Image]()
+        func getImagesFor() {
+            do {
+                photoCollection = try ImagePersistenceManager.manager.getImages()
+            }
+            catch {
+                print(error)
+            }
+            
+        }
+            
+    }
 
     func testPerformanceExample() {
         // This is an example of a performance test case.

@@ -23,6 +23,14 @@ struct ImagePersistenceManager {
     func getImages() throws -> [Image] {
         return try persistenceHelper.getObjects()
     }
+    
+    func deletePhoto(specificID: Int) throws {
+        do {
+            let images = try getImages()
+            let newImages = images.filter { $0.id != specificID}
+            try persistenceHelper.replace(elements: newImages)
+        }
+    }
 
 
 

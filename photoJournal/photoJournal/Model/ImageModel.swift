@@ -9,7 +9,9 @@ import Foundation
 import UIKit
 
 struct Image: Codable {
-    let postedDate: String
-    let name: String
-    let imageData: Data
+    let postedDate: String?
+    let name: String?
+    let imageData: Data?
+    let id: Int?
+    
 }
